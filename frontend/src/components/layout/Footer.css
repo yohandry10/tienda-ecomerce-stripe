@@ -1,11 +1,39 @@
 /* src/components/layout/Footer.css */
 
 .footer {
-    background-color: #111010;
-    padding: 1rem 0;
-  }
-  
-  .footer .MuiTypography-root {
-    color: #6c757d;
-  }
-  
+  background-color: #1f1f1f;
+  color: #ffffff;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+}
+
+.footer-brand {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.footer-text {
+  font-weight: 300;
+  color: #cccccc;
+}
+
+.social-icon {
+  color: #ffffff;
+  font-size: 1.5rem;
+  margin-left: 1rem;
+  transition: color 0.3s;
+}
+
+.social-icon:first-child {
+  margin-left: 0;
+}
+
+.social-icon:hover {
+  color: #ffca2c;
+}
+
+.footer-copy {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #777777;
+}

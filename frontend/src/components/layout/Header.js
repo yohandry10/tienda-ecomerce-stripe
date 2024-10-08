@@ -1,164 +1,132 @@
 // src/components/layout/Header.js
 
 import React, { useState } from 'react';
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  IconButton,
-  Box,
-  Menu,
-  MenuItem,
-  Badge,
-  Select,
-} from '@mui/material';
-import {
-  ShoppingCart,
-  AccountCircle,
-  Language,
-} from '@mui/icons-material';
+import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Badge, Container } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../redux/actions/userActions';
 import { Link } from 'react-router-dom';
-import './Header.css'; // Importar el archivo CSS
+import { FaShoppingCart, FaUser } from 'react-icons/fa';
+import './Header.css';
 
 function Header() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
   const user = useSelector((state) => state.user);
   const { userInfo } = user;
   const dispatch = useDispatch();
 
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [langAnchorEl, setLangAnchorEl] = useState(null);
-  const [currency, setCurrency] = useState('USD');
-
-  const handleMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleLangMenuOpen = (event) => {
-    setLangAnchorEl(event.currentTarget);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
-
-  const handleLangMenuClose = () => {
-    setLangAnchorEl(null);
-  };
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleLogout = () => {
     dispatch(logout());
-    handleMenuClose();
   };
 
-  const handleLanguageChange = (lang) => {
-    i18n.changeLanguage(lang);
-    handleLangMenuClose();
-  };
-
-  const handleCurrencyChange = (event) => {
-    setCurrency(event.target.value);
-    // Aquí puedes guardar la moneda en el estado global o en localStorage
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    // Implementa la lógica de búsqueda según tus necesidades
+    console.log('Buscar:', searchTerm);
   };
 
   return (
-    <AppBar position="static" className="app-bar">
-      <Toolbar>
-        {/* Logotipo o nombre de la tienda */}
-        <Typography
-          variant="h6"
-          component={Link}
-          to="/"
-          className="store-name"
-        >
-          {t('store_name')}
-        </Typography>
-        {/* Espacio flexible para alinear a la derecha */}
-        <Box sx={{ flexGrow: 1 }} />
-        {/* Selector de Moneda */}
-        <Select
-          value={currency}
-          onChange={handleCurrencyChange}
-          className="select"
-        >
-          <MenuItem value="USD">USD</MenuItem>
-          <MenuItem value="EUR">EUR</MenuItem>
-          <MenuItem value="GBP">GBP</MenuItem>
-        </Select>
-        {/* Iconos y menús */}
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          {/* Carrito */}
-          <IconButton
-            className="icon-button"
-            component={Link}
-            to="/cart"
-          >
-            <Badge
-              badgeContent={cartItems.length}
-              color="error"
-              className="badge"
-            >
-              <ShoppingCart />
-            </Badge>
-          </IconButton>
-          {/* Usuario */}
-          {userInfo ? (
-            <>
-              <IconButton
-                className="icon-button"
-                onClick={handleMenuOpen}
-              >
-                <AccountCircle />
-              </IconButton>
-              <Menu
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={handleMenuClose}
-              >
-                <MenuItem component={Link} to="/profile">
-                  {t('profile')}
-                </MenuItem>
-                <MenuItem onClick={handleLogout}>
-                  {t('logout')}
-                </MenuItem>
-              </Menu>
-            </>
-          ) : (
-            <IconButton
-              className="icon-button"
-              component={Link}
-              to="/login"
-            >
-              <AccountCircle />
-            </IconButton>
-          )}
-          {/* Selector de idioma */}
-          <IconButton
-            className="icon-button language-icon"
-            onClick={handleLangMenuOpen}
-          >
-            <Language />
-          </IconButton>
-          <Menu
-            anchorEl={langAnchorEl}
-            open={Boolean(langAnchorEl)}
-            onClose={handleLangMenuClose}
-          >
-            <MenuItem onClick={() => handleLanguageChange('es')}>
-              Español
-            </MenuItem>
-            <MenuItem onClick={() => handleLanguageChange('en')}>
-              English
-            </MenuItem>
-          </Menu>
-        </Box>
-      </Toolbar>
-    </AppBar>
+    <header>
+      {/* Top Bar */}
+      <div className="top-bar">
+        <Container>
+          <p className="top-bar-text">
+            ¡OFERTAS EXCLUSIVAS! {t('mega_discounts')}
+          </p>
+        </Container>
+      </div>
+
+      {/* Navbar Principal */}
+      <Navbar expand="lg" className="navbar-main" variant="dark">
+        <Container>
+          {/* Logo */}
+          <LinkContainer to="/">
+            <Navbar.Brand className="store-name">{t('store_name')}</Navbar.Brand>
+          </LinkContainer>
+
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
+          <Navbar.Collapse id="basic-navbar-nav">
+            {/* Categorías */}
+            <Nav className="me-auto">
+              <NavDropdown title={t('categories')} id="basic-nav-dropdown" className="nav-dropdown">
+                <LinkContainer to="/category/electronics">
+                  <NavDropdown.Item>{t('electronics')}</NavDropdown.Item>
+                </LinkContainer>
+                <LinkContainer to="/category/fashion">
+                  <NavDropdown.Item>{t('fashion')}</NavDropdown.Item>
+                </LinkContainer>
+                <LinkContainer to="/category/home">
+                  <NavDropdown.Item>{t('home')}</NavDropdown.Item>
+                </LinkContainer>
+                {/* Añade más categorías según tus necesidades */}
+              </NavDropdown>
+
+              {/* Enlaces de navegación */}
+              <LinkContainer to="/deals">
+                <Nav.Link>{t('deals')}</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/orders">
+                <Nav.Link>{t('my_orders')}</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/invite">
+                <Nav.Link>{t('invite_and_earn')}</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/guarantee">
+                <Nav.Link>{t('delivery_guarantee')}</Nav.Link>
+              </LinkContainer>
+            </Nav>
+
+            {/* Buscador */}
+            <Form className="d-flex me-3" onSubmit={handleSearchSubmit}>
+              <FormControl
+                type="search"
+                placeholder={t('search_placeholder')}
+                className="me-2 search-input"
+                aria-label="Search"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <Button variant="outline-light" type="submit">{t('search')}</Button>
+            </Form>
+
+            {/* Iconos y menús */}
+            <Nav>
+              {/* Carrito */}
+              <LinkContainer to="/cart">
+                <Nav.Link>
+                  <FaShoppingCart />
+                  {cartItems.length > 0 && (
+                    <Badge pill bg="danger" className="ms-1">
+                      {cartItems.length}
+                    </Badge>
+                  )}
+                </Nav.Link>
+              </LinkContainer>
+
+              {/* Usuario */}
+              {userInfo ? (
+                <NavDropdown title={<FaUser />} id="username" align="end" className="user-dropdown">
+                  <LinkContainer to="/profile">
+                    <NavDropdown.Item>{t('my_account')}</NavDropdown.Item>
+                  </LinkContainer>
+                  <NavDropdown.Item onClick={handleLogout}>{t('logout')}</NavDropdown.Item>
+                </NavDropdown>
+              ) : (
+                <LinkContainer to="/login">
+                  <Nav.Link><FaUser /> {t('login')}</Nav.Link>
+                </LinkContainer>
+              )}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </header>
   );
 }
 

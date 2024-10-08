@@ -1,34 +1,53 @@
 /* src/components/layout/HeroBanner.css */
 
 .hero-banner {
-    position: relative;
-    background-image: url('/public/images/hero.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 500px;
-    color: #fff;
-  }
-  
-  .hero-banner .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-  
-  .hero-banner .container {
-    position: relative;
-    z-index: 1;
-  }
-  
-  .hero-banner h1,
-  .hero-banner p {
-    color: #fff;
-  }
-  
-  .hero-banner .btn {
-    margin-top: 20px;
-  }
-  
+  position: relative;
+  background-image: url('/public/images/hero.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+}
+
+.hero-banner .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.hero-title {
+  font-weight: 700;
+  font-size: 3rem;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-weight: 300;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.hero-button {
+  background-color: #ffca2c;
+  border: none;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  border-radius: 50px;
+}
+
+.hero-button:hover {
+  background-color: #ffc107;
+}

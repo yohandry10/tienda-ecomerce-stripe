@@ -4,10 +4,13 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '../redux/actions/productActions';
 import ProductCard from '../components/comun/ProductCard';
-import { Grid, Container, Typography, CircularProgress } from '@mui/material';
+import { Row, Col, Container, Spinner } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import HeroBanner from '../components/layout/HeroBanner';
-import CategoryFilter from '../components/comun/CategoryFilter';
+import FeaturedProducts from '../components/home/FeaturedProducts';
+import BrandsSection from '../components/home/BrandsSection';
+import NewsletterSection from '../components/home/NewsletterSection';
+import './HomePage.css';
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -21,29 +24,36 @@ function HomePage() {
   return (
     <div>
       <HeroBanner />
-      <Container sx={{ marginTop: '2rem' }}>
-        <CategoryFilter />
-        <Typography variant="h4" gutterBottom>
-          {t('our_products')}
-        </Typography>
-        {loading ? (  
-          <div style={{ textAlign: 'center' }}>
-            <CircularProgress />
+
+      {/* Sección de Productos Destacados */}
+      <FeaturedProducts />
+
+      {/* Sección de Marcas */}
+      <BrandsSection />
+
+      {/* Sección de Suscripción al Boletín */}
+      <NewsletterSection />
+
+      <Container className="mt-5">
+        <h2 className="section-title">{t('our_products')}</h2>
+        {loading ? (
+          <div className="text-center my-5">
+            <Spinner animation="border" variant="primary" />
           </div>
         ) : error ? (
-          <Typography color="error">
+          <div className="text-danger">
             {t('error')}: {error}
-          </Typography>
+          </div>
         ) : products && products.length > 0 ? (
-          <Grid container spacing={3}>
+          <Row>
             {products.map((product) => (
-              <Grid item key={product._id} xs={12} sm={6} md={4}>
+              <Col key={product._id} xs={12} sm={6} md={4} lg={3} className="mb-4">
                 <ProductCard product={product} />
-              </Grid>
+              </Col>
             ))}
-          </Grid>
+          </Row>
         ) : (
-          <Typography>{t('no_products_found')}</Typography>
+          <div>{t('no_products_found')}</div>
         )}
       </Container>
     </div>

@@ -1,5 +1,3 @@
-// index.js
-
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
@@ -40,7 +38,7 @@ const shippingRoutes = require('./routes/shippingRoutes');
 
 // Usar rutas
 app.use('/api/auth', authRoutes);
-app.use('/api/products', productRoutes);
+app.use('/api/products', productRoutes); // Verifica que estas rutas no se superpongan
 app.use('/api/orders', orderRoutes);
 app.use('/api/payment', paymentRoutes);
 app.use('/api/shipping', shippingRoutes);
@@ -48,6 +46,12 @@ app.use('/api/shipping', shippingRoutes);
 // Ruta de prueba
 app.get('/', (req, res) => {
   res.send('¡Bienvenido a la API de la Tienda Online!');
+});
+
+// Manejo de errores global
+app.use((err, req, res, next) => {
+  console.error('Error global:', err.message);
+  res.status(500).json({ msg: 'Error en el servidor.' });
 });
 
 // Configuración del puerto

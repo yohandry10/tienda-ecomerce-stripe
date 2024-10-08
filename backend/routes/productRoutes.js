@@ -8,6 +8,7 @@ const admin = require('../middlewares/admin');
 
 // Rutas públicas
 router.get('/categories', productController.obtenerCategorias);
+router.get('/featured', productController.obtenerProductosDestacados); // Nueva ruta para productos destacados
 router.get('/:id', productController.obtenerProductoPorId);
 router.get('/', productController.obtenerProductos);
 

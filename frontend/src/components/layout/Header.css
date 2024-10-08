@@ -1,28 +1,116 @@
 /* src/components/layout/Header.css */
 
-.app-bar {
-    background-color: #343a40;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+header {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Top Bar */
+.top-bar {
+  background-color: #00060c;
+  padding: 0.5rem 0;
+  text-align: center;
+}
+
+.top-bar-text {
+  color: #ffffff;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Navbar Principal */
+.navbar-main {
+  background: linear-gradient(90deg, #040138 0%, #161527 100%);
+  padding: 1rem 0;
+}
+
+.navbar-main .navbar-brand {
+  font-weight: 700;
+  color: #ffffff !important;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.navbar-main .nav-link,
+.navbar-main .navbar-nav .nav-link {
+  color: #ffffff !important;
+  font-weight: 500;
+  margin-right: 1rem;
+  position: relative;
+}
+
+.navbar-main .nav-link::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #ffca2c;
+  transition: width 0.3s;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+}
+
+.navbar-main .nav-link:hover::after {
+  width: 100%;
+}
+
+.navbar-main .nav-link:hover {
+  color: #ffca2c !important;
+}
+
+.navbar-main .nav-dropdown .dropdown-menu {
+  background-color: #ffffff;
+}
+
+.navbar-main .nav-dropdown .dropdown-item {
+  color: #333333;
+}
+
+.navbar-main .nav-dropdown .dropdown-item:hover {
+  background-color: #f8f9fa;
+}
+
+.navbar-main .form-control {
+  border-radius: 50px;
+  background-color: #ffffff;
+}
+
+.navbar-main .btn-outline-light {
+  color: #ffffff;
+  border-color: #ffffff;
+  border-radius: 50px;
+}
+
+.navbar-main .btn-outline-light:hover {
+  color: #000000;
+  background-color: #ffffff;
+  border-color: #ffffff;
+}
+
+.navbar-main .fa-shopping-cart,
+.navbar-main .fa-user {
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+
+.navbar-main .badge {
+  vertical-align: top;
+}
+
+.user-dropdown .dropdown-toggle::after {
+  display: none;
+}
+
+.user-dropdown .dropdown-menu {
+  right: 0;
+  left: auto;
+}
+
+@media (max-width: 991px) {
+  .navbar-main .nav-link {
+    margin-right: 0;
   }
-  
-  .store-name {
-    color: #fff;
-    text-decoration: none;
-  }
-  
-  .icon-button {
-    color: #fff;
-  }
-  
-  .select {
-    color: #fff;
-    margin-right: 1rem;
-  }
-  
-  .badge .MuiBadge-badge {
-    background-color: #dc004e;
-  }
-  
-  .language-icon {
-    color: #fff;
-  }
-  
+}

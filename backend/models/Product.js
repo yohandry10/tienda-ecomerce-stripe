@@ -1,5 +1,3 @@
-// models/Product.js
-
 const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema(
@@ -11,6 +9,7 @@ const productSchema = new mongoose.Schema(
     categoria: { type: String, required: true },
     stock: { type: Number, required: true },
     imagen: { type: String },
+    destacado: { type: Boolean, default: false } // Añadir el campo destacado al esquema
   },
   { timestamps: true }
 );

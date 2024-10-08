@@ -14,6 +14,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import ProfilePage from './pages/ProfilePage';
 import NotFoundPage from './pages/NotFoundPage';
 import PrivateRoute from './components/PrivateRoute';
+import CategoryPage from './pages/CategoryPage';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <div style={{ minHeight: '80vh' }}>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/products" element={<HomePage />} />
           <Route path="/product/:id" element={<ProductDetailPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/login" element={<LoginPage />} />
@@ -50,6 +52,7 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route path="/category/:categoryName" element={<CategoryPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>

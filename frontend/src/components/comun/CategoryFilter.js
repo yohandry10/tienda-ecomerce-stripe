@@ -25,7 +25,7 @@ function CategoryFilter() {
       }
     };
     fetchCategories();
-  }, [])
+  }, []);
 
   const handleChange = (event) => {
     setSelectedCategory(event.target.value);
@@ -45,7 +45,7 @@ function CategoryFilter() {
         </MenuItem>
         {categories.map((category) => (
           <MenuItem key={category} value={category}>
-            {category}
+            {t(category)}
           </MenuItem>
         ))}
       </Select>

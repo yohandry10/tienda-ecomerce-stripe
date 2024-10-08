@@ -13,16 +13,20 @@ const schemaProducto = Joi.object({
   categoria: Joi.string().required(),
   stock: Joi.number().integer().required(),
   imagen: Joi.string().uri().allow(''),
+  destacado: Joi.boolean().default(false), // Añadir campo "destacado"
 });
 
 // Obtener todos los productos con opción de conversión de moneda
 exports.obtenerProductos = async (req, res) => {
   try {
-    const { moneda } = req.query; // Moneda solicitada por el cliente
+    const { moneda } = req.query;
     const productos = await Product.find();
 
+    if (productos.length === 0) {
+      return res.status(404).json({ msg: 'No se encontraron productos en la base de datos.' });
+    }
+
     if (moneda && moneda.toUpperCase() !== 'USD') {
-      // Convertir precios a la moneda solicitada
       const rate = await getExchangeRate('USD', moneda.toUpperCase());
       const productosConvertidos = productos.map((producto) => {
         return {
@@ -36,7 +40,18 @@ exports.obtenerProductos = async (req, res) => {
       res.json(productos);
     }
   } catch (error) {
-    console.error('Error en obtenerProductos:', error);
+    console.error('Error en obtenerProductos:', error.message);
+    res.status(500).json({ msg: 'Error al obtener productos del servidor.' });
+  }
+};
+
+// Obtener productos destacados
+exports.obtenerProductosDestacados = async (req, res) => {
+  try {
+    const productosDestacados = await Product.find({ destacado: true }).limit(8);
+    res.json(productosDestacados);
+  } catch (error) {
+    console.error('Error en obtenerProductosDestacados:', error);
     res.status(500).send('Error en el servidor.');
   }
 };

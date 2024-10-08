@@ -1,22 +1,30 @@
 // src/redux/reducers/productReducer.js
+
 const initialState = {
-    products: [],
-    loading: false,
-    error: null,
-  };
-  
-  function productReducer(state = initialState, action) {
-    switch (action.type) {
-      case 'FETCH_PRODUCTS_REQUEST':
-        return { ...state, loading: true };
-      case 'FETCH_PRODUCTS_SUCCESS':
-        return { products: action.payload, loading: false };
-      case 'FETCH_PRODUCTS_FAILURE':
-        return { ...state, loading: false, error: action.payload };
-      default:
-        return state;
-    }
+  products: [],
+  featuredProducts: [],
+  loading: false,
+  error: null,
+};
+
+export const productReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'FETCH_PRODUCTS_REQUEST':
+      return { ...state, loading: true };
+    case 'FETCH_PRODUCTS_SUCCESS':
+      return { ...state, loading: false, products: action.payload };
+    case 'FETCH_PRODUCTS_FAILURE':
+      return { ...state, loading: false, error: action.payload };
+
+    case 'FETCH_FEATURED_PRODUCTS_REQUEST':
+      return { ...state, loading: true };
+    case 'FETCH_FEATURED_PRODUCTS_SUCCESS':
+      return { ...state, loading: false, featuredProducts: action.payload };
+    case 'FETCH_FEATURED_PRODUCTS_FAILURE':
+      return { ...state, loading: false, error: action.payload };
+
+    default:
+      return state;
   }
-  
-  export default productReducer;
-  
+};
+export default productReducer

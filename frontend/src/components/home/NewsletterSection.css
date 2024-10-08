@@ -1,0 +1,30 @@
+/* src/components/home/NewsletterSection.css */
+
+.newsletter-section {
+    background-color: #f8f9fa;
+    padding: 2rem 0;
+  }
+  
+  .newsletter-section .section-title {
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  
+  .newsletter-form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+  
+  .newsletter-form .form-control {
+    flex: 1;
+    border-radius: 50px;
+  }
+  
+  .newsletter-form .btn {
+    border-radius: 50px;
+    padding: 0.5rem 1.5rem;
+  }
+  

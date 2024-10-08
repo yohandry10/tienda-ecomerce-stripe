@@ -8,8 +8,9 @@ import App from './App';
 import './index.css';
 import './i18n/config';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'animate.css/animate.min.css';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <Provider store={store}>
     <App />

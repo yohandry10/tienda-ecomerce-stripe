@@ -1,21 +1,32 @@
-// src/components/layout/HeroBanner.js
-
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import './HeroBanner.css'; // Archivo CSS para estilos personalizados
+import React, { useEffect, useState } from 'react';
+import './HeroBanner.css'; // Importar el archivo CSS con los estilos
 
 function HeroBanner() {
-  const { t } = useTranslation();
+  const [text, setText] = useState('');
+  const fullText = 'Tienda Online';
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    let interval;
+    if (index < fullText.length) {
+      interval = setTimeout(() => {
+        setText((prev) => prev + fullText[index]);
+        setIndex(index + 1);
+      }, 200); // Ajusta el tiempo de aparición de cada letra
+    } else {
+      interval = setTimeout(() => {
+        setText(''); // Vacía el texto para reiniciar
+        setIndex(0);
+      }, 2000); // Espera 2 segundos antes de reiniciar el texto
+    }
+    return () => clearTimeout(interval);
+  }, [index, fullText]);
 
   return (
-    <div className="hero-banner d-flex align-items-center justify-content-center text-center">
+    <div className="hero-banner">
       <div className="overlay"></div>
-      <div className="container">
-        <h1 className="display-4 text-white">{t('welcome')}</h1>
-        <p className="lead text-white">{t('best_products')}</p>
-        <a href="#products" className="btn btn-primary btn-lg">
-          {t('shop_now')}
-        </a>
+      <div className="hero-content">
+        <h1 className="hero-title">{text}</h1>
       </div>
     </div>
   );
