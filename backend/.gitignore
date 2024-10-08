@@ -1,0 +1,51 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Binaries
+bin/
+obj/
+
+# Environment variables
+.env
+.env.*
+
+# Production
+build/
+dist/
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Cache folders
+.cache/
+.pnp/
+.pnp.js
+
+# Optional npm cache directory
+.npm/
+
+# Optional eslint cache
+.eslintcache
+
+# Debug
+*.local
+.idea/
+.vscode/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+*.swp
+
+# Docker
+.dockerignore
+docker-compose.yml
+Dockerfile

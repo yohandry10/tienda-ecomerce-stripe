@@ -1,0 +1,11 @@
+/* src/components/layout/Footer.css */
+
+.footer {
+    background-color: #111010;
+    padding: 1rem 0;
+  }
+  
+  .footer .MuiTypography-root {
+    color: #6c757d;
+  }
+  

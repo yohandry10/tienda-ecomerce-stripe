@@ -1,0 +1,28 @@
+/* src/components/layout/Header.css */
+
+.app-bar {
+    background-color: #343a40;
+  }
+  
+  .store-name {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .icon-button {
+    color: #fff;
+  }
+  
+  .select {
+    color: #fff;
+    margin-right: 1rem;
+  }
+  
+  .badge .MuiBadge-badge {
+    background-color: #dc004e;
+  }
+  
+  .language-icon {
+    color: #fff;
+  }
+  

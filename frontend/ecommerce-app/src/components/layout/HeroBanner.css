@@ -1,0 +1,34 @@
+/* src/components/layout/HeroBanner.css */
+
+.hero-banner {
+    position: relative;
+    background-image: url('/public/images/hero.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    color: #fff;
+  }
+  
+  .hero-banner .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .hero-banner .container {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .hero-banner h1,
+  .hero-banner p {
+    color: #fff;
+  }
+  
+  .hero-banner .btn {
+    margin-top: 20px;
+  }
+  
